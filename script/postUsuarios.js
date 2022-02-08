@@ -1,7 +1,4 @@
 let formulario = document.getElementById('formulario')
-let btnCorreo = document.getElementById('btnCorreo')
-let btnEditar = document.getElementById('btnEditar')
-let btnEliminar = document.getElementById('btnEliminar')
 
 window.addEventListener('DOMContentLoaded', ()=> {
     document.getElementById('id').style.display = 'none';
@@ -15,7 +12,7 @@ formulario.addEventListener('submit', (e)=> {
     const lastName = document.getElementById('lastName').value;
     const email = document.getElementById('email').value;
 
-    fetch('http://localhost:4002/usuarios', {
+    fetch('http://localhost:4003/usuarios', {
         method: 'POST',
         body: JSON.stringify({
             nombre: name,
@@ -23,7 +20,11 @@ formulario.addEventListener('submit', (e)=> {
             correo: email
         }),
         headers: {
-            "Content-Type": "application/json; charset-UTF-8"
+            "Content-Type": "application/json; charset=UTF-8"
         }
-    }).then((resp)=> console.log(resp))
+    }).then(()=> Swal.fire({
+        title: 'Registrado Correctamente',
+        showConfirmButton: false,
+        timer: 1000
+    }))
 })
